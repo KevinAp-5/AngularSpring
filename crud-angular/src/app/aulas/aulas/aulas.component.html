@@ -1,0 +1,33 @@
+
+<mat-card>
+  <mat-toolbar color="primary">Cursos Disponíveis</mat-toolbar>
+  <div *ngIf="aulas$ | async as aulas; else carregando">
+    <table mat-table [dataSource]="aulas" class="mat-elevation-z8">
+
+      <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="nome">
+          <th mat-header-cell *matHeaderCellDef> Curso </th>
+          <td mat-cell *matCellDef="let aula"> {{aula.nome}} </td>
+        </ng-container>
+
+        <!-- Category Column -->
+        <ng-container matColumnDef="categoria">
+          <th mat-header-cell *matHeaderCellDef> Categoria </th>
+          <td mat-cell *matCellDef="let categoria"> {{categoria.categoria}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="Colunas"></tr>
+        <tr mat-row *matRowDef="let row; columns: Colunas;"></tr>
+      </table>
+  </div>
+    <ng-template #carregando>
+
+      <div class="spinner-carregando">
+        <mat-spinner></mat-spinner>
+      </div>
+    </ng-template>
+
+  </mat-card>
