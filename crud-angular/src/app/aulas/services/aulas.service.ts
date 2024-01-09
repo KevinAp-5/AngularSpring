@@ -15,7 +15,7 @@ export class AulasService{
   list() {
     return this.httpClient.get<Aula[]>(this.API).pipe(
       first(),
-      delay(5000),
+      //delay(5000),
       tap(aulas => console.log(aulas))
     );
   }
