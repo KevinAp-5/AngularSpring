@@ -6,7 +6,6 @@ import { SharedModule } from '../shared/shared.module';
 import { AulasRoutingModule } from './aulas-routing.module';
 import { AulasComponent } from './aulas/aulas.component';
 
-
 @NgModule({
   declarations: [
     AulasComponent
@@ -17,7 +16,6 @@ import { AulasComponent } from './aulas/aulas.component';
     AulasRoutingModule,
     AppMaterialModule,
     SharedModule,
-
   ]
 })
 export class AulasModule { }

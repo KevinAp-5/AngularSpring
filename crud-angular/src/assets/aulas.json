@@ -1,3 +1,5 @@
 [
-  { "_id": "1", "nome": "Python", "categoria": "Back-end"}
+  { "_id": "1", "nome": "Python", "categoria": "Back-end"},
+  { "_id": "2", "nome": "Java", "categoria": "Back-end"},
+  { "_id": "3", "nome": "Angular", "categoria": "Front-end"}
 ]

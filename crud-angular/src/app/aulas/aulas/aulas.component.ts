@@ -6,10 +6,13 @@ import { Observable, catchError, of } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from '../../shared/components/error-dialog/error-dialog.component';
 
+
 @Component({
   selector: 'app-aulas',
   templateUrl: './aulas.component.html',
-  styleUrl: './aulas.component.scss'
+  styleUrl: './aulas.component.scss',
+  //standalone: false,
+  //imports: [AppMaterialModule]
 })
 
 export class AulasComponent implements OnInit{
