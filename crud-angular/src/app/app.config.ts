@@ -4,9 +4,9 @@ import {
   Injectable,
   inject,
 } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, Routes } from '@angular/router';
 
-import { routes } from './app.routes';
+//import {routes} from "./app-routing.module/Routes"
 import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -18,6 +18,15 @@ class StartupService {
     return this.http.get('/');
   }
 }
+
+const routes: Routes = [
+  {path: "", pathMatch: "full", redirectTo: "aulas"},
+  {path: "api/aulas", pathMatch: "full", redirectTo: "aulas"},
+  {
+    path: "aulas",
+    loadChildren: () => import ("./aulas/aulas.module").then(m => m.AulasModule)
+  },
+]
 
 export const appConfig: ApplicationConfig = {
   providers: [

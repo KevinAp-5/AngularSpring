@@ -3,10 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {path: "", pathMatch: "full", redirectTo: "aulas"},
+  {path: "api/aulas", pathMatch: "full", redirectTo: "aulas"},
   {
     path: "aulas",
     loadChildren: () => import ("./aulas/aulas.module").then(m => m.AulasModule)
-  }
+  },
+
 ];
 
 @NgModule({
