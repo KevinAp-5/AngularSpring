@@ -4,11 +4,12 @@ import {
   Injectable,
   inject,
 } from '@angular/core';
-import { provideRouter, Routes } from '@angular/router';
 
-import {routes} from "./app-routing.module"
+import { provideRouter } from '@angular/router';
+
 import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { routes } from "./app-routing.module";
 
 @Injectable({ providedIn: 'root' })
 class StartupService {
