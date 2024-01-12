@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { provideRouter, Routes } from '@angular/router';
 
-//import {routes} from "./app-routing.module/Routes"
+import {routes} from "./app-routing.module"
 import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
