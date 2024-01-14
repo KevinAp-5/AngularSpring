@@ -13,11 +13,10 @@ import { AulasService } from '../services/aulas.service';
   //standalone: false,
   //imports: [AppMaterialModule]
 })
-
 export class AulasComponent implements OnInit{
   aulas$: Observable<Aula[]>;
 
-  Colunas = ['nome', 'categoria'];
+  Colunas = ['nome', 'categoria', 'actions'];
 
   //aulasService: AulasService;
 
@@ -44,6 +43,7 @@ export class AulasComponent implements OnInit{
     }
 
     ngOnInit(): void {
-      //
+      console.log('aa');
   }
 }
+
