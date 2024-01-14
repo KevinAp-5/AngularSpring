@@ -34,7 +34,9 @@ export class AulasComponent implements OnInit{
       })
     );
 
-    //this.aulasService.list().subscribe(aulas => this.aulas = aulas)
+
+  OnAdd(): void{
+    console.log('teste');
   }
 
   OnError(ErroMensagem: string) {
