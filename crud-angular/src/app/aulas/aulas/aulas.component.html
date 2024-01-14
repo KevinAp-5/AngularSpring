@@ -17,12 +17,10 @@
           </td>
         </ng-container>
 
-        <!-- Actions Column -->
-      <!-- Actions Column -->
-      <ng-container matColumnDef="actions">
-        <mat-header-cell *matHeaderCellDef>
-          <button mat-mini-fab color="accent" aria-label="Adicionar um curso">
-            <mat-icon (click)="OnAdd()" >add</mat-icon>
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef>
+          <button mat-mini-fab color="accent" aria-label="Adicionar um curso" (click)="OnAdd()" >
+            <mat-icon >add</mat-icon>
           </button>
         </mat-header-cell>
 
@@ -35,14 +33,16 @@
             <mat-icon>delete</mat-icon>
           </button>
         </mat-cell>
-
-      </ng-container>
+        </ng-container>
+        <!-- Actions Column -->
+      <!-- Actions Column -->
 
       <tr mat-header-row *matHeaderRowDef="Colunas"></tr>
       <tr mat-row *matRowDef="let row; columns: Colunas;"></tr>
-    </table>
+     </table>
+    </div>
 
-  </div>
+
   <ng-template #carregando>
 
     <div class="spinner-carregando">
