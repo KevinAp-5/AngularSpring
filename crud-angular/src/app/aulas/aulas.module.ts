@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { AulasRoutingModule } from './aulas-routing.module';
 import { AulasComponent } from './aulas/aulas.component';
 import { AulaFormComponent } from './aula-form/aula-form.component';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { AulaFormComponent } from './aula-form/aula-form.component';
     AulasRoutingModule,
     AppMaterialModule,
     SharedModule,
+    MatTableModule
   ]
 })
 export class AulasModule { }
