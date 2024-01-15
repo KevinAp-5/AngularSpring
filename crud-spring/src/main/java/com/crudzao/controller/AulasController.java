@@ -28,4 +28,9 @@ public class AulasController {
         return aulaRepository.findAll();
     }
 
+    @PostMapping
+    public ResponseEntity<Aula> create (@RequestBody Aula aula) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+        .body(aulaRepository.save(aula));
+    }
 }
