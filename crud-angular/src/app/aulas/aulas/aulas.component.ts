@@ -4,6 +4,8 @@ import { Observable, catchError, of } from 'rxjs';
 import { ErrorDialogComponent } from '../../shared/components/error-dialog/error-dialog.component';
 import { Aula } from "../model/aula";
 import { AulasService } from '../services/aulas.service';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 
 @Component({
@@ -22,7 +24,9 @@ export class AulasComponent implements OnInit{
 
   constructor(
     private aulasService: AulasService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router,
+    private activeRoute: ActivatedRoute
     ) {
     this.aulas$ = this.aulasService.list().pipe(
       catchError(error => {
@@ -33,7 +37,7 @@ export class AulasComponent implements OnInit{
     }
 
     OnAdd(): void{
-      console.log('teste');
+      this.router.navigate(['new'], {relativeTo: this.activeRoute});
     }
 
     OnError(ErroMensagem: string) {
@@ -43,7 +47,7 @@ export class AulasComponent implements OnInit{
     }
 
     ngOnInit(): void {
-      console.log('aa');
+      //
   }
 }
 
