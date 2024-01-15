@@ -1,6 +1,3 @@
-table {
-  width: 100;
-}
 
 .spinner-carregando {
   padding: 15px;
@@ -8,4 +5,13 @@ table {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+
+table, .mat-table  {
+  width: 100% !important;
+}
+
+.mat-header-cell, .mat-cell, .matColumnDef {
+  justify-content: center !important;
 }
