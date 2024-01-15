@@ -7,6 +7,9 @@ import { AulasRoutingModule } from './aulas-routing.module';
 import { AulasComponent } from './aulas/aulas.component';
 import { AulaFormComponent } from './aula-form/aula-form.component';
 import {MatTableModule} from '@angular/material/table';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +22,9 @@ import {MatTableModule} from '@angular/material/table';
     AulasRoutingModule,
     AppMaterialModule,
     SharedModule,
-    MatTableModule
+    MatTableModule,
+    ReactiveFormsModule,
+    MatSnackBarModule
   ]
 })
 export class AulasModule { }

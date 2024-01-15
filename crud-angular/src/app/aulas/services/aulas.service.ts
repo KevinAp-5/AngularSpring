@@ -18,4 +18,9 @@ export class AulasService{
       tap(aulas => console.log(aulas))
     );
   }
+
+  save(record: Aula) {
+    return this.httpClient.post<Aula>(this.API, record).pipe(first());
+  }
+
 }
