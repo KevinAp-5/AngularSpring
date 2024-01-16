@@ -1,0 +1,45 @@
+<mat-table #table [dataSource]="aulas">
+  <!-- Name Column -->
+  <ng-container matColumnDef="nome">
+    <mat-header-cell *matHeaderCellDef>Curso</mat-header-cell>
+    <mat-cell *matCellDef="let aulas">{{ aulas.nome }}</mat-cell>
+  </ng-container>
+
+  <!-- Category Column -->
+  <ng-container matColumnDef="categoria">
+    <mat-header-cell *matHeaderCellDef>Categoria</mat-header-cell>
+    <mat-cell *matCellDef="let aulas">
+      {{ aulas.categoria }}
+      <mat-icon aria-hidden="false" aria-label="Categoria do curso">{{
+        aulas.categoria | category
+      }}</mat-icon>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Actions Column -->
+  <ng-container matColumnDef="actions">
+    <mat-header-cell class="actions-table-header" *matHeaderCellDef>
+      <button
+        mat-mini-fab
+        color="accent"
+        aria-label="Adicionar um curso"
+        (click)="OnAdd()"
+      >
+        <mat-icon>add</mat-icon>
+      </button>
+    </mat-header-cell>
+
+    <mat-cell class="actions-table"  *matCellDef="let course">
+      <button mat-icon-button color="primary" aria-label="Editar Curso">
+        <mat-icon>edit</mat-icon>
+      </button>
+
+      <button mat-icon-button color="warn" aria-label="Remover Curso">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="Colunas"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: Colunas"></mat-row>
+</mat-table>
