@@ -7,15 +7,14 @@
   justify-content: center;
 }
 
-
-table, mat-table, mat-toolbar  {
-  width: 100% !important;
+mat-card {
+  max-width: 60%;
+  margin: 2em auto;
+  text-align: center;
+  min-width: 300px;
 }
 
-.mat-header-cell, .mat-cell, .matColumnDef {
-  justify-content: center !important;
-}
-
-body {
-  margin: 0%;
+.flex-column {
+  display: flex;
+  flex-direction: column;
 }

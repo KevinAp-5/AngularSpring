@@ -18,8 +18,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AulasComponent implements OnInit{
   aulas$: Observable<Aula[]>;
 
-  Colunas = ['nome', 'categoria', 'actions'];
-
   //aulasService: AulasService;
 
   constructor(
