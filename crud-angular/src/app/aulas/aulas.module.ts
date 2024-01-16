@@ -1,15 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTableModule } from '@angular/material/table';
 import { AppMaterialModule } from '../shared/app-material/app-material.module';
 import { SharedModule } from '../shared/shared.module';
 import { AulasRoutingModule } from './aulas-routing.module';
-import { AulasComponent } from './aulas/aulas.component';
-import { AulaFormComponent } from './aula-form/aula-form.component';
-import {MatTableModule} from '@angular/material/table';
-import { ReactiveFormsModule } from '@angular/forms';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import { AulasListComponent } from './aulas-list/aulas-list.component';
+import { AulasListComponent } from './components/aulas-list/aulas-list.component';
+import { AulaFormComponent } from './containers/aula-form/aula-form.component';
+import { AulasComponent } from './containers/aulas/aulas.component';
 
 
 @NgModule({

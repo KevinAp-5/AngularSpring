@@ -4,9 +4,9 @@
   <ng-container class= "flex-column" class="mat-elevation-z8">
     <app-aulas-list
       *ngIf="aulas$ | async as aulas; else carregando"
-      [aulas]="aulas">
-    </app-aulas-list>
-
+      [aulas]="aulas"
+      (add)="OnAdd()"
+    ></app-aulas-list>
     <ng-template #carregando>
       <div class="spinner-carregando">
         <mat-spinner></mat-spinner>

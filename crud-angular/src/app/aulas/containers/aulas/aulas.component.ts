@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable, catchError, of } from 'rxjs';
-import { ErrorDialogComponent } from '../../shared/components/error-dialog/error-dialog.component';
-import { Aula } from "../model/aula";
-import { AulasService } from '../services/aulas.service';
+import { ErrorDialogComponent } from '../../../shared/components/error-dialog/error-dialog.component';
+import { Aula } from "../../model/aula";
+import { AulasService } from '../../services/aulas.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 
