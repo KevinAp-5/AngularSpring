@@ -8,10 +8,14 @@
 }
 
 
-table, mat-table  {
+table, mat-table, mat-toolbar  {
   width: 100% !important;
 }
 
 .mat-header-cell, .mat-cell, .matColumnDef {
   justify-content: center !important;
+}
+
+body {
+  margin: 0%;
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AulasService } from '../services/aulas.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Location } from '@angular/common';
 
 interface Categorias {
   value: string,
@@ -17,14 +18,15 @@ export class AulaFormComponent {
   form: FormGroup;
   categorias: Categorias[] = [
     {value: 'null', viewValue: ''},
-    {value: 'backend', viewValue: 'Back end'},
-    {value: 'frontend', viewValue: 'Front end'},
-    {value: 'database', viewValue: 'Data Base'},
+    {value: 'back-end', viewValue: 'Back end'},
+    {value: 'front-end', viewValue: 'Front end'},
+    {value: 'data-base', viewValue: 'Data Base'},
   ];
 
   constructor(private formBuilder: FormBuilder,
     private service: AulasService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private location: Location
     ) {
     this.form = this.formBuilder.group({
       nome: [null],
@@ -35,7 +37,7 @@ export class AulaFormComponent {
   OnSubmit() {
     this.service.save(this.form.value).subscribe(
       resultado => {
-        console.log(resultado);
+        this.OnCreated();
       },
       erro => {
         this.OpenSnackbar("Aconteceu um erro. Tente mais tarde", "OK")
@@ -44,10 +46,15 @@ export class AulaFormComponent {
   }
 
   OnCancel() {
-    console.log("Cancel");
+    this.location.back();
+  }
+
+  OnCreated() {
+    this.OpenSnackbar("Curso criado com sucesso", "OK");
+    this.location.back();
   }
 
   private OpenSnackbar(mensage: string, action: string) {
-    this.snackBar.open(mensage, action);
+    this.snackBar.open(mensage, action, {duration: 3000});
   }
 }

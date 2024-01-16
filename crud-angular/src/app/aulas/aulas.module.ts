@@ -9,12 +9,14 @@ import { AulaFormComponent } from './aula-form/aula-form.component';
 import {MatTableModule} from '@angular/material/table';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { AulasListComponent } from './aulas-list/aulas-list.component';
 
 
 @NgModule({
   declarations: [
     AulasComponent,
-    AulaFormComponent
+    AulaFormComponent,
+    AulasListComponent
   ],
 
   imports: [
