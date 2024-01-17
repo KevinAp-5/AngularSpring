@@ -6,6 +6,7 @@
       *ngIf="aulas$ | async as aulas; else carregando"
       [aulas]="aulas"
       (add)="OnAdd()"
+      (edit)="OnEdit($event)"
     ></app-aulas-list>
     <ng-template #carregando>
       <div class="spinner-carregando">

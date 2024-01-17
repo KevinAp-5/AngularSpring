@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Aula } from '../../model/aula';
 
 @Component({
@@ -10,6 +9,7 @@ import { Aula } from '../../model/aula';
 export class AulasListComponent {
   @Input() aulas: Aula[] = [];
   @Output() add = new EventEmitter(false);
+  @Output() edit = new EventEmitter(false);
 
   readonly Colunas = ['nome', 'categoria', 'actions'];
 
@@ -19,5 +19,9 @@ export class AulasListComponent {
 
   OnAdd(): void{
     this.add.emit(true);
+  }
+
+  OnEdit(aula: Aula) {
+    this.edit.emit(aula);
   }
 }

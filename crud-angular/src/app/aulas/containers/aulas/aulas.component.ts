@@ -38,6 +38,10 @@ export class AulasComponent implements OnInit{
       this.router.navigate(['new'], {relativeTo: this.activeRoute});
     }
 
+    OnEdit(aula: Aula) {
+      this.router.navigate(['edit', aula._id], {relativeTo: this.activeRoute})
+    }
+
     OnError(ErroMensagem: string) {
       this.dialog.open(ErrorDialogComponent, {
         data: ErroMensagem
