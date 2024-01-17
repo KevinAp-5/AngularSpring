@@ -19,6 +19,9 @@ export class AulasService{
     );
   }
 
+  loadById(id: string) {
+    return this.httpClient.get<Aula>(`${this.API}/${id}`);
+  }
   save(record: Aula) {
     return this.httpClient.post<Aula>(this.API, record).pipe(first());
   }
