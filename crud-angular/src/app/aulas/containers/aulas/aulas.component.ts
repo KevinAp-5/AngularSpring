@@ -27,7 +27,7 @@ export class AulasComponent implements OnInit{
     private activeRoute: ActivatedRoute
     ) {
     this.aulas$ = this.aulasService.list().pipe(
-      catchError(error => {
+        catchError(error => {
         this.OnError("Erro ao carregar cursos. Tente novamente mais tarde");
         return of([])
       })
