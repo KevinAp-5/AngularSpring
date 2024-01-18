@@ -13,10 +13,6 @@ export class AulasListComponent {
 
   readonly Colunas = ['nome', 'categoria', 'actions'];
 
-  constructor () {
-    console.log("");
-  }  // End constructor
-
   OnAdd(): void{
     this.add.emit(true);
   }
