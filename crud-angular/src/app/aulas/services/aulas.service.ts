@@ -5,16 +5,15 @@ import { first } from 'rxjs';
 import { Aula } from '../model/aula';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
-export class AulasService{
-  private readonly API = "api/aulas"
-  constructor(private httpClient: HttpClient) { }
+export class AulasService {
+  private readonly API = 'api/aulas';
+  constructor(private httpClient: HttpClient) {}
 
   list() {
     return this.httpClient.get<Aula[]>(this.API).pipe(
-      first(),
+      first()
       //tap(aulas => console.log(aulas))
     );
   }
@@ -37,7 +36,12 @@ export class AulasService{
   }
 
   private update(record: Partial<Aula>) {
-    return this.httpClient.put<Aula>(`${this.API}/${record._id}`, record).pipe(first());
+    return this.httpClient
+      .put<Aula>(`${this.API}/${record._id}`, record)
+      .pipe(first());
   }
 
+  delete(id: string) {
+    return this.httpClient.delete(`${this.API}/${id}`).pipe(first());
+  }
 }

@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable, catchError, of } from 'rxjs';
 import { ErrorDialogComponent } from '../../../shared/components/error-dialog/error-dialog.component';
-import { Aula } from "../../model/aula";
+import { Aula } from '../../model/aula';
 import { AulasService } from '../../services/aulas.service';
 import { ActivatedRoute, Router } from '@angular/router';
-
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-aulas',
@@ -15,8 +14,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   //standalone: false,
   //imports: [AppMaterialModule]
 })
-export class AulasComponent implements OnInit{
-  aulas$: Observable<Aula[]>;
+export class AulasComponent implements OnInit {
+  aulas$: Observable<Aula[]> | null = null;
 
   //aulasService: AulasService;
 
@@ -24,32 +23,52 @@ export class AulasComponent implements OnInit{
     private aulasService: AulasService,
     public dialog: MatDialog,
     private router: Router,
-    private activeRoute: ActivatedRoute
-    ) {
+    private activeRoute: ActivatedRoute,
+    private snackBar: MatSnackBar
+  ) {
+    this.refresh();
+  }
+
+  refresh() {
     this.aulas$ = this.aulasService.list().pipe(
-        catchError(error => {
-        this.OnError("Erro ao carregar cursos. Tente novamente mais tarde");
-        return of([])
+      catchError((error) => {
+        this.OnError('Erro ao carregar cursos. Tente novamente mais tarde');
+        return of([]);
       })
     );
-    }
+  }
 
-    OnAdd(): void{
-      this.router.navigate(['new'], {relativeTo: this.activeRoute});
-    }
+  OnAdd(): void {
+    this.router.navigate(['new'], { relativeTo: this.activeRoute });
+  }
 
-    OnEdit(aula: Aula) {
-      this.router.navigate(['edit', aula._id], {relativeTo: this.activeRoute})
-    }
+  OnEdit(aula: Aula) {
+    this.router.navigate(['edit', aula._id], { relativeTo: this.activeRoute });
+  }
 
-    OnError(ErroMensagem: string) {
-      this.dialog.open(ErrorDialogComponent, {
-        data: ErroMensagem
-      });
-    }
+  OnError(ErroMensagem: string) {
+    this.dialog.open(ErrorDialogComponent, {
+      data: ErroMensagem,
+    });
+  }
 
-    ngOnInit(): void {
-      //
+  OnDelete(aula: Aula) {
+    this.aulasService.delete(aula._id).subscribe(
+      () => {
+        this.refresh();
+        this.snackBar.open('Curso removido', 'OK', {
+          duration: 3000,
+          verticalPosition: 'top',
+          horizontalPosition: 'center',
+        });
+      },
+      () => {
+        this.OnError('Erro ao tentar remover curso');
+      }
+    );
+  }
+
+  ngOnInit(): void {
+    //
   }
 }
-
