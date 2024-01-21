@@ -6,6 +6,7 @@ import { Aula } from '../../model/aula';
 import { AulasService } from '../../services/aulas.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-aulas',
@@ -53,19 +54,27 @@ export class AulasComponent implements OnInit {
   }
 
   OnDelete(aula: Aula) {
-    this.aulasService.delete(aula._id).subscribe(
-      () => {
-        this.refresh();
-        this.snackBar.open('Curso removido', 'OK', {
-          duration: 3000,
-          verticalPosition: 'top',
-          horizontalPosition: 'center',
-        });
-      },
-      () => {
-        this.OnError('Erro ao tentar remover curso');
+    const dialogReference = this.dialog.open(ConfirmDialogComponent, {
+      data: 'Deseja remover esse curso?',
+    });
+
+    dialogReference.afterClosed().subscribe((result: boolean) => {
+      if (result == true) {
+        this.aulasService.delete(aula._id).subscribe(
+          () => {
+            this.refresh();
+            this.snackBar.open('Curso removido', 'OK', {
+              duration: 3000,
+              verticalPosition: 'top',
+              horizontalPosition: 'center',
+            });
+          },
+          () => {
+            this.OnError('Erro ao tentar remover curso');
+          }
+        );
       }
-    );
+    });
   }
 
   ngOnInit(): void {

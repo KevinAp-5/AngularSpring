@@ -17,7 +17,7 @@ public class Aula {
     @JsonProperty("_id")
     private long id;
 
-    @Column(length = 200, nullable = false)
+    @Column(length = 102, nullable = false)
     private String nome;
 
     @Column(length = 10, nullable = false)
