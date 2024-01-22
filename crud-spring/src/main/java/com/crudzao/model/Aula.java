@@ -19,6 +19,8 @@ import lombok.Data;
 
 @Data
 @Entity
+@SQLDelete(sql = "UPDATE Aula SET status = 'Inactive' where id = ?")
+@Where(clause = "status = 'Active'")
 public class Aula {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,4 +39,9 @@ public class Aula {
     @Column(length = 10, nullable = false)
     private String categoria;
 
+    @NotNull
+    @Length(max = 10)
+    @Pattern(regexp = "Active|Inactive")
+    @Column(length = 10, nullable = false)
+    private String status = "Active";
 }
