@@ -22,7 +22,7 @@ public class CrudSpringApplication {
 
             Aula aulinha = new Aula();
             aulinha.setNome("Python");
-            aulinha.setCategoria("back-end");
+            aulinha.setCategoria("Back-end");
             aulaRepository.save(aulinha);
         };
     }

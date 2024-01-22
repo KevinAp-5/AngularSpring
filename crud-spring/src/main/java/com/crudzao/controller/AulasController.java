@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.NonNull;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 
@@ -19,8 +21,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.crudzao.model.Aula;
 import com.crudzao.repository.AulaRepository;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 
+@Validated
 @RestController
 @RequestMapping("/api/aulas")
 @AllArgsConstructor
@@ -34,15 +40,17 @@ public class AulasController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Aula> findById(@PathVariable("id") long id) {
+    public ResponseEntity<Aula> findById(
+            @PathVariable("id") @NotNull @Positive Long id
+        ) {
         return aulaRepository.findById(id)
-        .map(record -> ResponseEntity.ok().body(record))
+        .map(recordBody -> ResponseEntity.ok().body(recordBody))
         .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Aula create(@RequestBody Aula aula) {
+    public Aula create(@RequestBody @Valid Aula aula) {
         if (aula == null) {
             return null;
         }
@@ -50,7 +58,11 @@ public class AulasController {
     }
    
     @PutMapping("/{id}")
-    public ResponseEntity<Aula> update(@PathVariable("id") long id, @RequestBody Aula aula) {
+    public ResponseEntity<Aula> update(
+            @PathVariable("id")
+            @NotNull @Positive Long id,
+            @RequestBody @Valid Aula aula
+        ) {
         return aulaRepository.findById(id)
             .map(recordFound -> {
                 recordFound.setNome(aula.getNome());
@@ -62,7 +74,9 @@ public class AulasController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable long id) {
+    public ResponseEntity<Void> delete(
+            @PathVariable("id") @NotNull @Positive Long id
+        ) {
         return aulaRepository.findById(id)
         .map(recordFound -> {
             this.aulaRepository.deleteById(id);

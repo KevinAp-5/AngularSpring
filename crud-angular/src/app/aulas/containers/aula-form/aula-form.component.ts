@@ -20,9 +20,9 @@ export class AulaFormComponent implements OnInit {
   form: FormGroup;
   categorias: Categorias[] = [
     { value: 'null', viewValue: '' },
-    { value: 'back-end', viewValue: 'Back end' },
-    { value: 'front-end', viewValue: 'Front end' },
-    { value: 'data-base', viewValue: 'Data Base' },
+    { value: 'Back-end', viewValue: 'Back end' },
+    { value: 'Front-end', viewValue: 'Front end' },
+    { value: 'Data-base', viewValue: 'Data Base' },
   ];
 
   constructor(
