@@ -5,7 +5,8 @@ out/
 .idea
 *.iml
 **/node_modules/
-tags
+**/tags
+**/.vim
 ### Eclipse ###
 .apt_generated
 .classpath
