@@ -1,5 +1,8 @@
 package com.crudzao.service;
 
+import java.util.stream.Collectors;
+import com.crudzao.dto.AulaDTO;
+import com.crudzao.dto.mapper.AulaMapper;
 import com.crudzao.exception.RecordNotFoundException;
 import com.crudzao.model.Aula;
 import org.springframework.stereotype.Service;
@@ -18,32 +21,34 @@ import jakarta.validation.constraints.Positive;
 @Service
 public class AulaService {
   private final AulaRepository aulaRepository;
+  private final AulaMapper aulaMapper;
 
-  public AulaService(AulaRepository aulaRepository) {
+  public AulaService(AulaRepository aulaRepository, AulaMapper aulaMapper) {
     this.aulaRepository = aulaRepository;
+    this.aulaMapper = aulaMapper;
   }
 
-  public List<Aula> lista() {
-    return aulaRepository.findAll();
+  public List<AulaDTO> lista() {
+    return aulaRepository.findAll()
+        .stream()
+        .map(aulaMapper::toDTO).toList();
   }
 
-  public Aula findById(@PathVariable("id") @NotNull @Positive Long id) {
-    return this.aulaRepository.findById(id).orElseThrow(() -> new RecordNotFoundException(id));
+  public AulaDTO findById(@PathVariable("id") @NotNull @Positive Long id) {
+    return this.aulaRepository.findById(id).map(aulaMapper::toDTO)
+        .orElseThrow(() -> new RecordNotFoundException(id));
   }
 
-  public Aula create(@Valid Aula aula) {
-    if (aula == null) {
-      return null;
-    }
-    return aulaRepository.save(aula);
+  public AulaDTO create(@Valid @NotNull AulaDTO aula) {
+    return aulaMapper.toDTO(aulaRepository.save(aulaMapper.toEntity(aula)));
   }
 
-  public Aula update(@NotNull @Positive Long id, @Valid Aula aula) {
+  public AulaDTO update(@NotNull @Positive Long id, @Valid @NotNull AulaDTO aula) {
     return aulaRepository.findById(id)
         .map(recordFound -> {
-          recordFound.setNome(aula.getNome());
-          recordFound.setCategoria(aula.getCategoria());
-          return aulaRepository.save(recordFound);
+          recordFound.setNome(aula.nome());
+          recordFound.setCategoria(aula.categoria());
+          return aulaMapper.toDTO(aulaRepository.save(recordFound));
         }).orElseThrow(() -> new RecordNotFoundException(id));
   }
 

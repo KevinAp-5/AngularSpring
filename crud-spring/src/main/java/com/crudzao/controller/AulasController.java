@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.crudzao.dto.AulaDTO;
 import com.crudzao.model.Aula;
 import com.crudzao.service.AulaService;
 
@@ -33,24 +34,24 @@ public class AulasController {
   }
 
   @GetMapping
-  public List<Aula> lista() {
+  public List<AulaDTO> lista() {
     return this.aulaService.lista();
   }
 
   @GetMapping("/{id}")
-  public Aula findById(@PathVariable("id") @NotNull @Positive Long id) {
+  public AulaDTO findById(@PathVariable("id") @NotNull @Positive Long id) {
     return aulaService.findById(id);
   }
 
   @PostMapping
   @ResponseStatus(code = HttpStatus.CREATED)
-  public Aula create(@RequestBody @Valid Aula aula) {
+  public AulaDTO create(@RequestBody @Valid @NotNull AulaDTO aula) {
     return aulaService.create(aula);
   }
 
   @PutMapping("/{id}")
-  public Aula update(@PathVariable("id") @NotNull @Positive Long id,
-      @RequestBody @Valid Aula aula) {
+  public AulaDTO update(@PathVariable("id") @NotNull @Positive Long id,
+      @RequestBody @Valid @NotNull AulaDTO aula) {
     return aulaService.update(id, aula);
   }
 
