@@ -5,6 +5,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.crudzao.enumns.Category;
+import com.crudzao.enumns.Status;
 import com.crudzao.model.Aula;
 import com.crudzao.repository.AulaRepository;
 
@@ -22,8 +24,8 @@ public class CrudSpringApplication {
 
       Aula aulinha = new Aula();
       aulinha.setNome("Python");
-      aulinha.setCategoria("Back-end");
-      aulinha.setStatus("Active");
+      aulinha.setCategoria(Category.BACK_END);
+      aulinha.setStatus(Status.ACTIVE);
       aulaRepository.save(aulinha);
     };
   }
