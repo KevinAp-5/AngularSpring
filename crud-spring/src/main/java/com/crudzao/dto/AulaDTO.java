@@ -12,5 +12,4 @@ public record AulaDTO(
     @JsonProperty("id") Long id,
     @NotNull @NotBlank @Length(min = 5, max = 100) String nome,
     @NotNull @Length(max = 10) @Pattern(regexp = "Back-end|Front-end|Data-base") String categoria) {
-
 }

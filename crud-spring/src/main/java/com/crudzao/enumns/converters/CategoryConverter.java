@@ -19,16 +19,20 @@ public class CategoryConverter implements AttributeConverter<Category, String> {
   }
 
   @Override
-  public Category convertToEntityAttribute(String dbData) {
-    if (!(dbData != null && dbData.isEmpty())) {
+  public Category convertToEntityAttribute(String value) {
+    if (value == null) {
       return null;
     }
 
-    // return Category.valueOf(dbData);
-    return Stream.of(Category.values())
-        .filter(c -> c.getValue().equals(dbData))
+    Category categoryValue = Stream.of(Category.values())
+        .filter(c -> c.getValue().equals(value))
         .findFirst()
         .orElseThrow(IllegalArgumentException::new);
 
+    if (categoryValue == null) {
+      throw new IllegalArgumentException();
+    }
+
+    return categoryValue;
   }
 }

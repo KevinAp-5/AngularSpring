@@ -38,8 +38,7 @@ public class Aula {
   @Column(length = 100, nullable = false)
   private String nome;
 
-  @NotNull
-  @Column(length = 10, nullable = false)
+  @Column(length = 15, nullable = false)
   @Convert(converter = CategoryConverter.class)
   private Category categoria;
 
@@ -47,4 +46,5 @@ public class Aula {
   @Column(length = 10, nullable = false)
   @Convert(converter = StatusConverter.class)
   private Status status = Status.ACTIVE;
+
 }
