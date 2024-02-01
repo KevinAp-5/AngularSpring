@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import com.crudzao.enumns.Category;
 import com.crudzao.enumns.Status;
 import com.crudzao.model.Aula;
+import com.crudzao.model.Lesson;
 import com.crudzao.repository.AulaRepository;
 
 @SpringBootApplication
@@ -26,6 +27,12 @@ public class CrudSpringApplication {
       aulinha.setNome("Python");
       aulinha.setCategoria(Category.BACK_END);
       aulinha.setStatus(Status.ACTIVE);
+
+      Lesson lesson = new Lesson();
+      lesson.setAula(aulinha);
+      lesson.setNome("Introdução");
+      lesson.setYoutubeUrl("CffwDZW3KEU");
+      aulinha.getLessons().add(lesson);
       aulaRepository.save(aulinha);
     };
   }
