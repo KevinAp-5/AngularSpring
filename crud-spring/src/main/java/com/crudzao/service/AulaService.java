@@ -4,7 +4,6 @@ import com.crudzao.dto.AulaDTO;
 import com.crudzao.dto.mapper.AulaMapper;
 import com.crudzao.exception.RecordNotFoundException;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 

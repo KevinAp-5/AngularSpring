@@ -26,13 +26,11 @@ public class AulaMapper {
       aula.setId(aulaDTO.id());
     }
 
-    String categoria = aulaDTO.categoria();
-    if (categoria == null || categoria.isEmpty()) {
-      categoria = Category.DATA_BASE.getValue();
-    }
-
     aula.setNome(aulaDTO.nome());
     // TODO use a mapper for category
+
+    String categoria = aulaDTO.categoria();
+
     aula.setCategoria(this.convertCategoryValue(categoria));
 
     return aula;
