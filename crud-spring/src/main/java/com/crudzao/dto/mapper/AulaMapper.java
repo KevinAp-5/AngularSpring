@@ -12,7 +12,6 @@ public class AulaMapper {
     if (aula == null) {
       return null;
     }
-
     return new AulaDTO(aula.getId(), aula.getNome(), aula.getCategoria().getValue());
   }
 
@@ -30,7 +29,6 @@ public class AulaMapper {
     // TODO use a mapper for category
 
     String categoria = aulaDTO.categoria();
-
     aula.setCategoria(this.convertCategoryValue(categoria));
 
     return aula;
@@ -41,12 +39,14 @@ public class AulaMapper {
       return null;
     }
 
-    return switch (value) {
+    Category CategoryValue = switch (value) {
       case "Back-end" -> Category.BACK_END;
       case "Front-end" -> Category.FRONT_END;
       case "Data-base" -> Category.DATA_BASE;
       default -> throw new IllegalArgumentException("Categoria inválida" + value);
     };
+
+    return CategoryValue;
   }
 
 }
