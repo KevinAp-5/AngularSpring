@@ -12,7 +12,10 @@ public class AulaMapper {
     if (aula == null) {
       return null;
     }
-    return new AulaDTO(aula.getId(), aula.getNome(), aula.getCategoria().getValue());
+    return new AulaDTO(aula.getId(),
+        aula.getNome(),
+        aula.getCategoria().getValue(),
+        aula.getLessons());
   }
 
   public Aula toEntity(AulaDTO aulaDTO) {
@@ -26,10 +29,9 @@ public class AulaMapper {
     }
 
     aula.setNome(aulaDTO.nome());
-    // TODO use a mapper for category
-
     String categoria = aulaDTO.categoria();
     aula.setCategoria(this.convertCategoryValue(categoria));
+    // aula.setLessons(aulaDTO.lessons());
 
     return aula;
   }
