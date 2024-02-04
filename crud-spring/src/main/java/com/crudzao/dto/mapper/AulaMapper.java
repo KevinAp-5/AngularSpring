@@ -1,8 +1,11 @@
 package com.crudzao.dto.mapper;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import com.crudzao.dto.AulaDTO;
+import com.crudzao.dto.LessonDTO;
 import com.crudzao.enumns.Category;
 import com.crudzao.model.Aula;
 
@@ -12,10 +15,14 @@ public class AulaMapper {
     if (aula == null) {
       return null;
     }
+
+    List<LessonDTO> lessons = aula.getLessons().stream().map(lesson -> new LessonDTO(lesson.getId(),
+        lesson.getNome(), lesson.getYoutubeUrl())).toList();
+
     return new AulaDTO(aula.getId(),
         aula.getNome(),
         aula.getCategoria().getValue(),
-        aula.getLessons());
+        lessons);
   }
 
   public Aula toEntity(AulaDTO aulaDTO) {
