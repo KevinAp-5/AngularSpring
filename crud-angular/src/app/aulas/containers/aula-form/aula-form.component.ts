@@ -71,7 +71,7 @@ export class AulaFormComponent implements OnInit {
   ngOnInit(): void {
     const aula: Aula = this.route.snapshot.data['aula'];
     this.form.setValue({
-      _id: aula._id,
+      _id: aula.id,
       nome: aula.nome,
       categoria: aula.categoria,
     });

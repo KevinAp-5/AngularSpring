@@ -44,7 +44,7 @@ export class AulasComponent implements OnInit {
   }
 
   OnEdit(aula: Aula) {
-    this.router.navigate(['edit', aula._id], { relativeTo: this.activeRoute });
+    this.router.navigate(['edit', aula.id], { relativeTo: this.activeRoute });
   }
 
   OnError(ErroMensagem: string) {
@@ -60,7 +60,8 @@ export class AulasComponent implements OnInit {
 
     dialogReference.afterClosed().subscribe((result: boolean) => {
       if (result == true) {
-        this.aulasService.delete(aula._id).subscribe(
+        this.aulasService.delete(aula.id).subscribe(
+
           () => {
             this.refresh();
             this.snackBar.open('Curso removido', 'OK', {

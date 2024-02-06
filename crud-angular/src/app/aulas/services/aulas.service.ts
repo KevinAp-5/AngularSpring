@@ -9,7 +9,7 @@ import { Aula } from '../model/aula';
 })
 export class AulasService {
   private readonly API = 'api/aulas';
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   list() {
     return this.httpClient.get<Aula[]>(this.API).pipe(
@@ -23,7 +23,7 @@ export class AulasService {
   }
 
   save(record: Partial<Aula>) {
-    if (record._id) {
+    if (record.id) {
       return this.update(record);
     }
 
@@ -37,7 +37,7 @@ export class AulasService {
 
   private update(record: Partial<Aula>) {
     return this.httpClient
-      .put<Aula>(`${this.API}/${record._id}`, record)
+      .put<Aula>(`${this.API}/${record.id}`, record)
       .pipe(first());
   }
 

@@ -16,6 +16,6 @@ export class AulasResolver implements Resolve<Aula> {
     if (route.params?.['id']) {
       return this.service.loadById(route.params['id']);
     }
-    return of({"_id": "", "nome": "", "categoria": ""})
+    return of({ "id": "", "nome": "", "categoria": "" })
   }
 }
