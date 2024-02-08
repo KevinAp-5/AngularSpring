@@ -17,7 +17,7 @@ interface Categorias {
   styleUrl: './aula-form.component.scss',
 })
 export class AulaFormComponent implements OnInit {
-  form: FormGroup;
+  form!: FormGroup;
   categorias: Categorias[] = [
     { value: 'null', viewValue: '' },
     { value: 'Back-end', viewValue: 'Back end' },
@@ -32,18 +32,7 @@ export class AulaFormComponent implements OnInit {
     private location: Location,
     private route: ActivatedRoute
   ) {
-    this.form = this.formBuilder.group({
-      _id: [''],
-      nome: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(5),
-          Validators.maxLength(100),
-        ],
-      ],
-      categoria: ['', [Validators.required]],
-    });
+
   }
 
   getErrorMessage(fieldName: string): string {
@@ -70,11 +59,38 @@ export class AulaFormComponent implements OnInit {
 
   ngOnInit(): void {
     const aula: Aula = this.route.snapshot.data['aula'];
-    this.form.setValue({
-      _id: aula.id,
-      nome: aula.nome,
-      categoria: aula.categoria,
+    this.form = this.formBuilder.group({
+      _id: [aula.id],
+      nome: [
+        aula.nome,
+        [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.maxLength(100),
+        ],
+      ],
+      categoria: [aula.categoria, [Validators.required]],
+      lessons: this.formBuilder.array(this.retrieveLessons(aula))
     });
+    console.log(this.form);
+    console.log(this.form.value);
+  }
+  private retrieveLessons(aula: Aula) {
+    const lessons = [];
+    if (aula?.lessons) {
+      aula.lessons.forEach(lesson => lessons.push(
+        this.createLesson(lesson)));
+    } else {
+      lessons.push(this.createLesson())
+    }
+    return lessons
+  }
+  private createLesson(lesson = { id: '', nome: '', youtubeUrl: '' }) {
+    this.formBuilder.group({
+      id: [lesson.id],
+      nome: [lesson.nome],
+      youtubeUrl: [lesson.youtubeUrl]
+    })
   }
 
   OnSubmit() {

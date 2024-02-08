@@ -7,9 +7,10 @@ import {
 
 import { provideRouter } from '@angular/router';
 
-import { HttpClient, provideHttpClient } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withFetch } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { routes } from "./app-routing.module";
+import { provideClientHydration } from '@angular/platform-browser';
 
 @Injectable({ providedIn: 'root' })
 class StartupService {
@@ -23,7 +24,8 @@ class StartupService {
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    provideHttpClient(),
+    provideHttpClient(withFetch()),
+    provideClientHydration(),
     StartupService,
     {
       provide: APP_INITIALIZER,
