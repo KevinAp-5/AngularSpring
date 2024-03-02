@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, UntypedFormArray, Validators } from '@angular/forms';
 import { AulasService } from '../../services/aulas.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Location } from '@angular/common';
@@ -91,6 +91,10 @@ export class AulaFormComponent implements OnInit {
       nome: [lesson.nome],
       youtubeUrl: [lesson.youtubeUrl]
     })
+  }
+
+  getLessonsFormArray() {
+    return (<UntypedFormArray>this.form.get("lessons")).controls;
   }
 
   OnSubmit() {
